@@ -3,6 +3,7 @@ package video;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.io.OutputStream;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 import javax.swing.JFrame;
@@ -19,9 +20,9 @@ import com.sun.jna.NativeLibrary;
 
 public class ReadVideo implements Runnable {
  
-    private ConcurrentLinkedDeque<String> list; // On removera les premiers paquets de la liste
+    private ConcurrentLinkedDeque<OutputStream[]> list; // On removera les premiers paquets de la liste
  
-    public ReadVideo(ConcurrentLinkedDeque<String> list) {
+    public ReadVideo(ConcurrentLinkedDeque<OutputStream[]> list) {
         this.list = list;
     }
  
