@@ -9,14 +9,27 @@ public class Serveur {
     public static void main(String[] args) throws IOException 
     { 
     	// Initialisation de la socket
-        Socket sock = new ServerSocket(9001).accept();
-        
-        // Envoi video 
-        Util.transfertVideo(
-        		 new FileInputStream("Xperia.avi"),
-                 sock.getOutputStream(),
-                 true);
-        
-        sock.close(); 
+    	ServerSocket serverSocket = null;
+    	Socket socket = null;
+    	
+    	try {
+    		serverSocket = new ServerSocket(Constants.PORT);
+    	}
+    	catch (IOException e){
+    		e.printStackTrace();
+    	}
+    	
+    	while (true) {
+    		try{
+    			socket = serverSocket.accept();
+    		}
+    		catch (IOException e) {
+    			System.out.println("I/O Error : " + e);
+    		}
+    		
+    		System.out.println("Client " + socket.getInetAddress() + " connecté !");
+    		
+    		new DiffusionThread (socket).start();
+    	}
     } 
 }

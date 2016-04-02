@@ -21,7 +21,7 @@ public class DownloadVideo implements Runnable {
     public void run() {
     	Socket sock;
 		try {
-			sock = new Socket(InetAddress.getLocalHost(),9001);
+			sock = new Socket(InetAddress.getLocalHost(), Constants.PORT);
 			// Reception video
 			InputStream in = sock.getInputStream();
 			OutputStream out[] = new OutputStream[1];

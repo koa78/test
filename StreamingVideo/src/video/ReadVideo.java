@@ -42,11 +42,12 @@ public class ReadVideo implements Runnable {
 		f.add(p);
 		
 		// Chercher la librairie VLC
-		NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(),"vlc");
+		NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(),"/Applications/VLC.app/Contents/MacOS/lib");
 		Native.loadLibrary(RuntimeUtil.getLibVlcLibraryName(),LibVlc.class);
 		// Cr�tion du Media Player
 		MediaPlayerFactory mpf = new MediaPlayerFactory();
 		EmbeddedMediaPlayer emp = mpf.newEmbeddedMediaPlayer(new Win32FullScreenStrategy(f));
+		emp.setFullScreen(true);
 		emp.setVideoSurface(mpf.newVideoSurface(c));
 		
 		String file = "Xperia2.avi";
@@ -54,5 +55,7 @@ public class ReadVideo implements Runnable {
 		emp.prepareMedia(file);
 		// Lancement de la vid�o 
 		emp.play();
+		emp.setFullScreen(false);
+		emp.setFullScreen(true);
     }
 }
