@@ -16,7 +16,7 @@ public class Client {
          } catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			//
-         }
+         }System.out.println("r");
          ReadVideo task2 = new ReadVideo(list);
          Thread thread2= new Thread(task2);
          thread2.start();
